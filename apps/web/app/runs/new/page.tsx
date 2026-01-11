@@ -55,7 +55,7 @@ export default function NewRunPage() {
   }
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/templates`)
+    fetch(`/api/templates`)
       .then(res => res.json())
       .then(data => setTemplates(data))
       .catch(err => console.error(err))
@@ -76,7 +76,7 @@ export default function NewRunPage() {
         ap_count: Number(data.ap_count)
       }
       
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/runs`, {
+      const res = await fetch(`/api/runs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

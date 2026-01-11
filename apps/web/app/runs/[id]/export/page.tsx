@@ -34,7 +34,6 @@ const DEFAULT_ITEMS: ExportChecklistItem[] = [
 
 export default function RunExportPage() {
   const params = useParams<{ id: string }>()
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
 
   const [run, setRun] = useState<any>(null)
   const [loading, setLoading] = useState(true)
@@ -50,7 +49,7 @@ export default function RunExportPage() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch(`${API_URL}/runs/${params.id}`)
+        const res = await fetch(`/api/runs/${params.id}`)
         const data = await res.json()
         setRun(data.run || null)
       } catch (e) {
@@ -60,7 +59,7 @@ export default function RunExportPage() {
       }
     }
     load()
-  }, [API_URL, params.id])
+  }, [params.id])
 
   const toggle = (id: string) => {
     setChecked((prev) => ({ ...prev, [id]: !prev[id] }))
@@ -72,7 +71,7 @@ export default function RunExportPage() {
     setExporting(true)
     setExportError(null)
     try {
-      const res = await fetch(`${API_URL}/runs/${params.id}/export`, {
+      const res = await fetch(`/api/runs/${params.id}/export`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -87,7 +86,16 @@ export default function RunExportPage() {
 
       const payload = await res.json()
       const pdfUrl: string = payload.pdf_url
-      const finalUrl = pdfUrl?.startsWith("http") ? pdfUrl : `${API_URL}${pdfUrl}`
+      const finalUrl = (() => {
+        if (!pdfUrl) return pdfUrl
+        try {
+          const u = pdfUrl.startsWith("http") ? new URL(pdfUrl) : new URL(pdfUrl, "http://local")
+          if (u.pathname.startsWith("/exports/")) return `/api${u.pathname}`
+          return pdfUrl
+        } catch {
+          return pdfUrl
+        }
+      })()
       window.open(finalUrl, "_blank", "noopener,noreferrer")
     } catch (e: any) {
       setExportError(e?.message || "Export failed")

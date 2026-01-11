@@ -34,19 +34,33 @@ export default function BucketDetailPage() {
   // Refs for file inputs
   const cameraInputRefs = useRef<Record<string, HTMLInputElement | null>>({})
   const uploadInputRefs = useRef<Record<string, HTMLInputElement | null>>({})
-
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const ensuredThumbsRef = useRef(false)
 
   useEffect(() => {
     const load = async () => {
       try {
-        const runRes = await fetch(`${API_URL}/runs/${params.id}`)
-        const runData = await runRes.json()
+        const runRes = await fetch(`/api/runs/${params.id}`)
+        let runData = await runRes.json()
+
+        if (!ensuredThumbsRef.current) {
+          const answers = runData.answers || {}
+          const needsThumbs = Object.values(answers).some((a: any) =>
+            (a?.photos || []).some((p: any) => !p?.thumbnail_url || p.thumbnail_url === p.url)
+          )
+          ensuredThumbsRef.current = true
+          if (needsThumbs) {
+            try {
+              await fetch(`/api/runs/${params.id}/photos/thumbnails/regenerate`, { method: "POST" })
+              const runRes2 = await fetch(`/api/runs/${params.id}`)
+              runData = await runRes2.json()
+            } catch {}
+          }
+        }
         
         setRun(runData.run || null)
         setAnswers(runData.answers || {})
 
-        const tmplRes = await fetch(`${API_URL}/templates/${runData.template_summary.id}`)
+        const tmplRes = await fetch(`/api/templates/${runData.template_summary.id}`)
         const tmplData = await tmplRes.json()
         
         const b = tmplData.buckets.find((b: any) => b.bucket_id === params.bucketId)
@@ -64,7 +78,20 @@ export default function BucketDetailPage() {
       }
     }
     load()
-  }, [params.id, params.bucketId, API_URL])
+  }, [params.id, params.bucketId])
+
+  const assetUrl = (url?: string) => {
+    if (!url) return ""
+    try {
+      const u = url.startsWith("http") ? new URL(url) : new URL(url, "http://local")
+      if (u.pathname.startsWith("/uploads/") || u.pathname.startsWith("/exports/")) {
+        return `/api${u.pathname}`
+      }
+      return url
+    } catch {
+      return url
+    }
+  }
 
   const toggleGroup = (groupId: string) => {
     setCollapsedGroups(prev => ({
@@ -80,7 +107,7 @@ export default function BucketDetailPage() {
     }))
 
     try {
-      await fetch(`${API_URL}/runs/${params.id}/answers`, {
+      await fetch(`/api/runs/${params.id}/answers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -102,7 +129,7 @@ export default function BucketDetailPage() {
 
   const saveComment = async (questionId: string, comment: string) => {
      try {
-      await fetch(`${API_URL}/runs/${params.id}/answers`, {
+      await fetch(`/api/runs/${params.id}/answers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -122,7 +149,7 @@ export default function BucketDetailPage() {
     formData.append('file', file)
 
     try {
-      const res = await fetch(`${API_URL}/runs/${params.id}/questions/${questionId}/photos`, {
+      const res = await fetch(`/api/runs/${params.id}/questions/${questionId}/photos`, {
         method: 'POST',
         body: formData
       })
@@ -157,7 +184,7 @@ export default function BucketDetailPage() {
     })
 
     try {
-      await fetch(`${API_URL}/runs/${params.id}/photos/${photoId}`, {
+      await fetch(`/api/runs/${params.id}/photos/${photoId}`, {
         method: 'DELETE'
       })
     } catch (e) {
@@ -183,7 +210,7 @@ export default function BucketDetailPage() {
       try {
         const formData = new FormData()
         formData.append('caption', caption)
-        await fetch(`${API_URL}/runs/${params.id}/photos/${photoId}`, {
+        await fetch(`/api/runs/${params.id}/photos/${photoId}`, {
             method: 'PUT',
             body: formData
         })
@@ -259,7 +286,7 @@ export default function BucketDetailPage() {
                                       <div className="aspect-square bg-muted relative">
                                         {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
-                                          src={photo.thumbnail_url || photo.url}
+                                          src={assetUrl(photo.thumbnail_url || photo.url)}
                                           alt="AP evidence"
                                           className="object-cover w-full h-full"
                                         />
@@ -397,7 +424,7 @@ export default function BucketDetailPage() {
                                             <div className="aspect-square bg-muted relative">
                                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                                 <img 
-                                                    src={photo.thumbnail_url || photo.url} 
+                                                    src={assetUrl(photo.thumbnail_url || photo.url)} 
                                                     alt="Evidence" 
                                                     className="object-cover w-full h-full"
                                                 />

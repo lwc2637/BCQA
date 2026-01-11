@@ -32,17 +32,64 @@ const IconMap: Record<string, any> = {
   "cable": Cable
 }
 
+type ApiTechBand = number | { band: number; quantity?: number }
+
+const DEFAULT_TECH_BANDS = [1800, 2600, 3500]
+
+const normalizeTechBands = (techBands: ApiTechBand[] | undefined) => {
+  const quantitiesByBand = new Map<number, number>()
+
+  for (const tb of techBands ?? []) {
+    if (typeof tb === "number") {
+      quantitiesByBand.set(tb, Math.max(quantitiesByBand.get(tb) ?? 0, 1))
+      continue
+    }
+    if (tb && typeof tb.band === "number") {
+      quantitiesByBand.set(tb.band, tb.quantity ?? 0)
+    }
+  }
+
+  return DEFAULT_TECH_BANDS.map((band) => ({
+    band,
+    quantity: quantitiesByBand.get(band) ?? 0,
+  }))
+}
+
+const formatVisitDate = (dateStr?: string | null) => {
+  if (!dateStr) return null
+  const d = dateStr.includes("T") ? new Date(dateStr) : new Date(`${dateStr}T00:00:00`)
+  if (Number.isNaN(d.getTime())) return null
+  return d.toLocaleDateString()
+}
+
+const formatTechBandsSummary = (techBands: ApiTechBand[] | undefined) => {
+  const selected = normalizeTechBands(techBands).filter((tb) => tb.quantity > 0)
+  if (selected.length === 0) return null
+  return selected.map((tb) => `${tb.band} MHz ×${tb.quantity}`).join(", ")
+}
+
 export default function RunDashboard() {
   const params = useParams()
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!params.id) return
-    fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/runs/${params.id}`)
-      .then(res => res.json())
+    setLoadError(null)
+    fetch(`/api/runs/${params.id}`)
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text().catch(() => "")
+          throw new Error(text || `Request failed (${res.status})`)
+        }
+        return res.json()
+      })
       .then(setData)
-      .catch(console.error)
+      .catch((e) => {
+        setData(null)
+        setLoadError(e?.message || "Failed to fetch")
+      })
       .finally(() => setLoading(false))
   }, [params.id])
 
@@ -52,9 +99,41 @@ export default function RunDashboard() {
     </AppShell>
   )
 
-  if (!data) return <AppShell><div>Run not found</div></AppShell>
+  if (!data) {
+    return (
+      <AppShell>
+        <div className="p-6">
+          {loadError ? (
+            <div className="rounded-lg border p-4">
+              <div className="font-semibold">Unable to load checklist</div>
+              <div className="text-sm text-muted-foreground break-words">{loadError}</div>
+            </div>
+          ) : (
+            <div>Run not found</div>
+          )}
+        </div>
+      </AppShell>
+    )
+  }
 
   const { run, template_summary, buckets } = data
+  const engineerName = run.engineer_name ?? run.engineerName
+  const contractorName = run.contractor_name ?? run.contractorName
+  const supplierName = run.supplier_name ?? run.supplierName
+  const visitDate = run.visit_date ?? run.visitDate
+  const apCount = run.ap_count ?? run.apCount
+  const techBands = run.tech_bands ?? run.techBands
+
+  const visitDateLabel = formatVisitDate(visitDate)
+  const techBandsLabel = formatTechBandsSummary(techBands)
+  const metaItems = [
+    engineerName ? { label: "Engineer", value: engineerName } : null,
+    contractorName ? { label: "Contractor", value: contractorName } : null,
+    supplierName ? { label: "Supplier", value: supplierName } : null,
+    visitDateLabel ? { label: "Visit Date", value: visitDateLabel } : null,
+    typeof apCount === "number" ? { label: "AP Count", value: String(apCount) } : null,
+    techBandsLabel ? { label: "Tech Bands", value: techBandsLabel } : null,
+  ].filter(Boolean) as Array<{ label: string; value: string }>
 
   return (
     <AppShell>
@@ -64,6 +143,19 @@ export default function RunDashboard() {
             <div>
               <h1 className="text-2xl font-bold">{run.site_name}</h1>
               <p className="text-muted-foreground">{run.p_ref} • {template_summary.name}</p>
+              {metaItems.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {metaItems.map((item) => (
+                    <span
+                      key={item.label}
+                      className="inline-flex items-center rounded-md border bg-background/40 px-2 py-0.5 text-xs"
+                    >
+                      <span className="text-muted-foreground">{item.label}: </span>
+                      <span className="ml-1 text-foreground">{item.value}</span>
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="text-right">
               <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-primary text-primary-foreground shadow">

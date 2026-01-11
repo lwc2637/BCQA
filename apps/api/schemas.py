@@ -1,5 +1,5 @@
 from typing import List, Optional, Union
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import date, datetime
 from uuid import UUID
 
@@ -28,24 +28,22 @@ class RunUpdate(BaseModel):
     address: Optional[str] = None
 
 class RunResponse(RunCreate):
+    model_config = ConfigDict(from_attributes=True)
+
     id: UUID
     status: str
     created_at: datetime
     updated_at: Optional[datetime] = None
     submitted_at: Optional[datetime] = None
 
-    class Config:
-        orm_mode = True
-
 class PhotoResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: UUID
     url: str
     thumbnail_url: Optional[str] = None
     caption: Optional[str] = None
     created_at: datetime
-
-    class Config:
-        orm_mode = True
 
 class AnswerCreate(BaseModel):
     question_id: str
@@ -53,15 +51,14 @@ class AnswerCreate(BaseModel):
     comment: Optional[str] = None
 
 class AnswerResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: UUID
     question_id: str
     value: Optional[str] = None
     comment: Optional[str] = None
     photos: List[PhotoResponse] = []
     updated_at: Optional[datetime] = None
-
-    class Config:
-        orm_mode = True
 
 class ExportDeclarationItem(BaseModel):
     id: str

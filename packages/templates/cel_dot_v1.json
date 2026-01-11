@@ -86,7 +86,7 @@
               "question_id": "Q-DOT-008"
             }, 
             {
-              "text": "Rear of cabinet - 2 x tab plates fi\udbc0\udda9ed?", 
+              "text": "Rear of cabinet - 2 x tab plates fitted?", 
               "required": true, 
               "severity": "minor", 
               "answer_type": "tri_state", 
@@ -184,7 +184,7 @@
               "question_id": "Q-DOT-021"
             }, 
             {
-              "text": "AC/DC cables ferrals fitted, no exposed copper wire?", 
+              "text": "AC/DC cables ferrules fitted, no exposed copper wire?", 
               "required": true, 
               "severity": "critical", 
               "answer_type": "tri_state", 
@@ -247,7 +247,7 @@
               "question_id": "Q-DOT-029"
             }, 
             {
-              "text": "BT MEAS fitted correcly & earthed back to cabinet earth bar?", 
+              "text": "BT MEAS fitted correctly & earthed back to cabinet earth bar?", 
               "required": true, 
               "severity": "major", 
               "answer_type": "tri_state", 
@@ -487,7 +487,7 @@
               "question_id": "Q-DOT-057"
             }, 
             {
-              "text": "Earth cables labled back to the equipment?", 
+              "text": "Earth cables labelled back to the equipment?", 
               "required": true, 
               "severity": "minor", 
               "answer_type": "tri_state", 
@@ -522,7 +522,7 @@
               "question_id": "Q-DOT-064"
             }, 
             {
-              "text": "All cable igress/egress points reinstated to conform to building fire regs?", 
+              "text": "All cable ingress/egress points reinstated to conform to building fire regs?", 
               "required": true, 
               "severity": "critical", 
               "answer_type": "tri_state", 

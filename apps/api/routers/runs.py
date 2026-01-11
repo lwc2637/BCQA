@@ -6,11 +6,14 @@ import os
 import shutil
 from datetime import datetime
 import textwrap
+from mimetypes import guess_extension
+from urllib.parse import urlparse
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
+from PIL import Image, ImageOps
 
 from ..database import get_db
 from ..models import ChecklistRun, ChecklistAnswer, ChecklistPhoto
@@ -18,6 +21,57 @@ from ..schemas import RunCreate, RunUpdate, RunResponse, AnswerCreate, AnswerRes
 from .templates import loader # Reuse the loader instance
 
 router = APIRouter(prefix="/runs", tags=["runs"])
+
+def _normalized_image_extension(filename: Optional[str], content_type: Optional[str]) -> str:
+    ext = os.path.splitext(filename or "")[1].lower()
+    if ext in {".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic", ".heif", ".bmp", ".tif", ".tiff"}:
+        return ".jpg" if ext == ".jpeg" else ext
+
+    ct = (content_type or "").split(";")[0].strip().lower()
+    ct_map = {
+        "image/jpeg": ".jpg",
+        "image/jpg": ".jpg",
+        "image/png": ".png",
+        "image/webp": ".webp",
+        "image/gif": ".gif",
+        "image/heic": ".heic",
+        "image/heif": ".heif",
+        "image/bmp": ".bmp",
+        "image/tiff": ".tiff",
+    }
+    if ct in ct_map:
+        return ct_map[ct]
+
+    guessed = guess_extension(ct) or ""
+    if guessed == ".jpe":
+        return ".jpg"
+    return guessed
+
+def _uploads_file_path_from_url(url: Optional[str]) -> Optional[str]:
+    if not url:
+        return None
+    try:
+        parsed = urlparse(url)
+        path = parsed.path if parsed.scheme else url
+        if path.startswith("/uploads/"):
+            return os.path.join("uploads", path[len("/uploads/"):])
+        return None
+    except Exception:
+        return None
+
+def _try_make_thumbnail(src_path: str, thumb_path: str, size: int = 512) -> bool:
+    try:
+        resample = Image.LANCZOS
+        if hasattr(Image, "Resampling"):
+            resample = Image.Resampling.LANCZOS
+        with Image.open(src_path) as img:
+            img = ImageOps.exif_transpose(img)
+            img = img.convert("RGB")
+            thumb = ImageOps.fit(img, (size, size), method=resample)
+            thumb.save(thumb_path, format="JPEG", quality=82, optimize=True)
+        return True
+    except Exception:
+        return False
 
 @router.post("/", response_model=RunResponse)
 def create_run(run_in: RunCreate, db: Session = Depends(get_db)):
@@ -143,7 +197,7 @@ def get_run_details(run_id: UUID, db: Session = Depends(get_db)):
         }
 
     return {
-        "run": run,
+        "run": RunResponse.model_validate(run),
         "template_summary": {
             "id": template.meta.template_id,
             "name": template.meta.name,
@@ -210,17 +264,19 @@ async def upload_photo(
     if not os.path.exists(UPLOAD_DIR):
         os.makedirs(UPLOAD_DIR)
         
-    file_ext = os.path.splitext(file.filename)[1]
     file_id = str(uuid4())
+    file_ext = _normalized_image_extension(file.filename, file.content_type)
     filename = f"{file_id}{file_ext}"
     file_path = os.path.join(UPLOAD_DIR, filename)
     
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
         
-    # URL (assuming localhost for now, should be env var)
-    base_url = os.getenv("API_URL", "http://localhost:8000")
-    url = f"{base_url}/uploads/{filename}"
+    url = f"/uploads/{filename}"
+
+    thumb_filename = f"{file_id}_thumb.jpg"
+    thumb_path = os.path.join(UPLOAD_DIR, thumb_filename)
+    thumbnail_url = f"/uploads/{thumb_filename}" if _try_make_thumbnail(file_path, thumb_path) else url
     
     # Create Photo record
     db_photo = ChecklistPhoto(
@@ -228,7 +284,7 @@ async def upload_photo(
         answer_id=db_answer.id,
         url=url,
         file_path=file_path,
-        thumbnail_url=url # Use same URL for thumb for now (Stage 1)
+        thumbnail_url=thumbnail_url
     )
     
     db.add(db_photo)
@@ -246,10 +302,43 @@ def delete_photo(run_id: UUID, photo_id: UUID, db: Session = Depends(get_db)):
     # Delete file
     if os.path.exists(photo.file_path):
         os.remove(photo.file_path)
+
+    thumb_path = _uploads_file_path_from_url(getattr(photo, "thumbnail_url", None))
+    if thumb_path and os.path.exists(thumb_path) and os.path.normpath(thumb_path) != os.path.normpath(photo.file_path):
+        os.remove(thumb_path)
         
     db.delete(photo)
     db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+@router.post("/{run_id}/photos/thumbnails/regenerate")
+def regenerate_thumbnails(run_id: UUID, db: Session = Depends(get_db)):
+    run = db.query(ChecklistRun).filter(ChecklistRun.id == run_id).first()
+    if not run:
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    photos = (
+        db.query(ChecklistPhoto)
+        .join(ChecklistAnswer, ChecklistPhoto.answer_id == ChecklistAnswer.id)
+        .filter(ChecklistAnswer.run_id == run_id)
+        .all()
+    )
+
+    updated = 0
+    for photo in photos:
+        if not photo.file_path or not os.path.exists(photo.file_path):
+            continue
+        file_id = str(photo.id)
+        thumb_filename = f"{file_id}_thumb.jpg"
+        thumb_path = os.path.join("uploads", thumb_filename)
+        if _try_make_thumbnail(photo.file_path, thumb_path):
+            photo.thumbnail_url = f"/uploads/{thumb_filename}"
+            updated += 1
+
+    if updated:
+        db.commit()
+
+    return {"updated": updated, "total": len(photos)}
 
 @router.put("/{run_id}/photos/{photo_id}", response_model=PhotoResponse)
 def update_photo_caption(run_id: UUID, photo_id: UUID, caption: str = Form(...), db: Session = Depends(get_db)):

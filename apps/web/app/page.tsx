@@ -84,11 +84,9 @@ export default function Home() {
   const [editTechBands, setEditTechBands] = useState<TechBand[]>(EDIT_TECH_BANDS)
   const [savingEdit, setSavingEdit] = useState(false)
 
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
-
   const fetchRuns = useCallback(async () => {
     try {
-      const res = await fetch(`${apiBaseUrl}/runs`)
+      const res = await fetch(`/api/runs`)
       if (res.ok) {
         const data = await res.json()
         setRuns(data)
@@ -98,7 +96,7 @@ export default function Home() {
     } finally {
       setLoading(false)
     }
-  }, [apiBaseUrl])
+  }, [])
 
   useEffect(() => {
     fetchRuns()
@@ -110,7 +108,7 @@ export default function Home() {
 
     setDeletingId(runId)
     try {
-      const res = await fetch(`${apiBaseUrl}/runs/${runId}`, { method: "DELETE" })
+      const res = await fetch(`/api/runs/${runId}`, { method: "DELETE" })
       if (res.status === 204) {
         setRuns((prev) => prev.filter((r) => r.id !== runId))
         return
@@ -161,7 +159,7 @@ export default function Home() {
         tech_bands: selectedTechBands.map(({ band, quantity }) => ({ band, quantity })),
       }
 
-      const res = await fetch(`${apiBaseUrl}/runs/${editingRun.id}`, {
+      const res = await fetch(`/api/runs/${editingRun.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
