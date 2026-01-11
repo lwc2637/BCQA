@@ -1,0 +1,460 @@
+{
+  "set": "DAS IBS",
+  "questions": [
+    {
+      "Question_ID": 1,
+      "Area": "MER Door",
+      "Equipment": "Signage",
+      "Question": "RF Warning",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 2,
+      "Area": "MER Door",
+      "Equipment": "Signage",
+      "Question": "Unauthorized site access prevented - MER",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 3,
+      "Area": "MER Door",
+      "Equipment": "Signage",
+      "Question": "Site cell ID",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 4,
+      "Area": "Cabinet",
+      "Equipment": "Signage",
+      "Question": "Electrical warning",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 5,
+      "Area": "Cabinet",
+      "Equipment": "Signage",
+      "Question": "RF Hazard",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 6,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "ICD AIRI TDEE92507 Build guide followed?",
+      "Cat": null
+    },
+    {
+      "Question_ID": 7,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "Cabinet floor mounting as per DD?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 8,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "The two M12 holes in each bracket cater for fitment to Unistrut which in turn is to be suitably secured to wall or appropriate structure?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 9,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "Rear of cabinet - 2 x tab plates fi􀆩ed?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 10,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "The wall mount brackets are to be installed to the rear of the rack to secure to a suitable structure. Orientated by vendor requirements?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 11,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "AIRI Extended back panel for use when deploying E/// ERS radios and requiring a back panel (central suite)?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 12,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "Module support brackets to support Ericsson base band modules.",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 13,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "1 x ERS Shelf Kit – 11888.001 to be used where only 1 or 2 shelves required?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 14,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "3 x ERS Shelf Kit – 11888 – To be called off per set of 3 x ERS?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 15,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "Main cabinet earth managed neatly as per DD?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 16,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "The front cam lock panel installed?",
+      "Cat": null
+    },
+    {
+      "Question_ID": 17,
+      "Area": "Cabinet",
+      "Equipment": "Frame",
+      "Question": "Additional Unistrut fitted correctly & earthed?",
+      "Cat": null
+    },
+    {
+      "Question_ID": 18,
+      "Area": "Cabinet",
+      "Equipment": "Mgmt",
+      "Question": "Have cables been routed and managed neatly?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 19,
+      "Area": "Cabinet",
+      "Equipment": "Mgmt",
+      "Question": "Cable ingress/egress point checked and correct?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 20,
+      "Area": "Cabinet",
+      "Equipment": "Mgmt",
+      "Question": "CAT6A not routed against AC line?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 21,
+      "Area": "Cabinet",
+      "Equipment": "Mgmt",
+      "Question": "Velcro used to secure fibres?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 22,
+      "Area": "Cabinet",
+      "Equipment": "Mgmt",
+      "Question": "AC/DC cables ferrals fitted, no exposed copper wire?",
+      "Cat": 1
+    },
+    {
+      "Question_ID": 23,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "Zero U cable management bars for fibre cable management fitted & utilised?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 24,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "GRU 05 05 GPS Receiver mounted with clamp as per DD?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 25,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "CAT6A Patch Panel fitted & labelled correctly?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 26,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "ERS 2260 fitted correctly & earthed back to the cabinet earth bar?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 27,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "BBU 6631 (2G/4G) fitted correctly & earthed back to the cabinet earth bar?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 28,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "Correct No' of DC splitters fitted as per DD?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 29,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "BT MEAS fitted correcly & earthed back to cabinet earth bar?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 30,
+      "Area": "Cabinet",
+      "Equipment": "Equipment",
+      "Question": "Feeders touqued to the required spec - 5Nm",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 31,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "Local AC DB providing the correct amp supply?",
+      "Cat": 1
+    },
+    {
+      "Question_ID": 32,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "SWA cable routed and terminated correctly?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 33,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "Commando socket fitted correctly if required?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 34,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "AC Junction box fed correctly if required?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 35,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "Smart meter fitted as per DD?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 36,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "230V AC Power bar fitted correctly?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 37,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "Eltek Flatpack fitted correctly & earthed back to cabinet earth bar?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 38,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "Eltek fitted with correct rectifier count as per DD?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 39,
+      "Area": "Cabinet",
+      "Equipment": "Power",
+      "Question": "Eltek MCB amp value supporting BBU as per DD?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 40,
+      "Area": "Roof",
+      "Equipment": "GPS",
+      "Question": "Has the correct GPS unit been installed as per DD?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 41,
+      "Area": "Roof",
+      "Equipment": "GPS",
+      "Question": "GPS bracket installed as per TDEE?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 42,
+      "Area": "Roof",
+      "Equipment": "GPS",
+      "Question": "GPS RF Weather Boot applied?",
+      "Cat": null
+    },
+    {
+      "Question_ID": 43,
+      "Area": "Roof",
+      "Equipment": "GPS",
+      "Question": "GPS RF connector self amalgamated?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 44,
+      "Area": "Roof",
+      "Equipment": "GPS",
+      "Question": "GPS earth routed neatly to nearest point?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 45,
+      "Area": "Roof",
+      "Equipment": "GPS",
+      "Question": "GPS cable labelled 'EE GPS' with Brady type?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 46,
+      "Area": "Roof",
+      "Equipment": "Mgmt",
+      "Question": "Cable clamps fitted, 1m spacings, yellow caps?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 47,
+      "Area": "Roof",
+      "Equipment": "Mgmt",
+      "Question": "Additional cable tray earth bonded & routed back to roof LP system?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 48,
+      "Area": "Roof",
+      "Equipment": "Mgmt",
+      "Question": "Cable ingress/egress roxtec point reinstated correctly?",
+      "Cat": 1
+    },
+    {
+      "Question_ID": 49,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "BBU6631 > ERS 2260 Fibers labelled with P-Flags?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 50,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "ERS2260 Coaxial 1/2\" labelled with Brady tip tag with correct tech colour > SPT1?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 51,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "Wrap arounds seen as a minimum, no Dyno labels applied to any cable?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 52,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "Cables passing through ingress/egress point labelled both sides, reinstated correctly?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 53,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "Eltek power cables labelled to the correct BBU?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 54,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "3 core flex cables labelled correctly?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 55,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "Local DB amp labelled?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 56,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "BT MEAS fibre labelled with P-Flags?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 57,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "CAT6A from BBU to AP each labelled correctly?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 58,
+      "Area": "Site",
+      "Equipment": "Labelling",
+      "Question": "CAT6A from patch panel labelled correctly?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 59,
+      "Area": "AP",
+      "Equipment": "Mounting",
+      "Question": "AP mounted according to the DD?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 60,
+      "Area": "AP",
+      "Equipment": "Mounting",
+      "Question": "AP ID labelled with Dyno?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 61,
+      "Area": "AP",
+      "Equipment": "Mounting",
+      "Question": "RF AP labelled at BBU/Splitter?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 62,
+      "Area": "Site",
+      "Equipment": "Other",
+      "Question": "All debris removed from rooftop?",
+      "Cat": 3
+    },
+    {
+      "Question_ID": 63,
+      "Area": "Site",
+      "Equipment": "Other",
+      "Question": "All debris removed from MER?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 64,
+      "Area": "Site",
+      "Equipment": "Other",
+      "Question": "All redundant kit removed from site?",
+      "Cat": 5
+    },
+    {
+      "Question_ID": 65,
+      "Area": "Site",
+      "Equipment": "Other",
+      "Question": "All cable igress/egress points reinstated to conform to building fire regs?",
+      "Cat": 1
+    }
+  ]
+}

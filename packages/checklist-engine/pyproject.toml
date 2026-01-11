@@ -1,0 +1,14 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "checklist-engine"
+version = "0.1.0"
+description = "BCQA Checklist Template Engine"
+dependencies = [
+    "pydantic>=2.0.0"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["checklist_engine"]

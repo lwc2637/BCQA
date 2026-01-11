@@ -1,0 +1,612 @@
+{
+  "run_fields": [], 
+  "buckets": [
+    {
+      "groups": [
+        {
+          "group_id": "signage", 
+          "order": 10, 
+          "questions": [
+            {
+              "text": "RF Warning", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-001"
+            }, 
+            {
+              "text": "Unauthorized site access prevented - MER", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-002"
+            }, 
+            {
+              "text": "Site cell ID", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-003"
+            }
+          ], 
+          "title": "Signage"
+        }
+      ], 
+      "bucket_id": "mer_door", 
+      "order": 10, 
+      "icon": "door-closed", 
+      "title": "MER Door"
+    }, 
+    {
+      "groups": [
+        {
+          "group_id": "signage", 
+          "order": 10, 
+          "questions": [
+            {
+              "text": "Electrical warning", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-004"
+            }, 
+            {
+              "text": "RF Hazard", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-005"
+            }
+          ], 
+          "title": "Signage"
+        }, 
+        {
+          "group_id": "frame", 
+          "order": 20, 
+          "questions": [
+            {
+              "text": "ICD AIRI TDEE92507 Build guide followed?", 
+              "required": true, 
+              "severity": null, 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-006"
+            }, 
+            {
+              "text": "Cabinet floor mounting as per DD?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-007"
+            }, 
+            {
+              "text": "The two M12 holes in each bracket cater for fitment to Unistrut which in turn is to be suitably secured to wall or appropriate structure?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-008"
+            }, 
+            {
+              "text": "Rear of cabinet - 2 x tab plates fi\udbc0\udda9ed?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-009"
+            }, 
+            {
+              "text": "The wall mount brackets are to be installed to the rear of the rack to secure to a suitable structure. Orientated by vendor requirements?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-010"
+            }, 
+            {
+              "text": "AIRI Extended back panel for use when deploying E/// ERS radios and requiring a back panel (central suite)?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-011"
+            }, 
+            {
+              "text": "Module support brackets to support Ericsson base band modules.", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-012"
+            }, 
+            {
+              "text": "1 x ERS Shelf Kit \u2013 11888.001 to be used where only 1 or 2 shelves required?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-013"
+            }, 
+            {
+              "text": "3 x ERS Shelf Kit \u2013 11888 \u2013 To be called off per set of 3 x ERS?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-014"
+            }, 
+            {
+              "text": "Main cabinet earth managed neatly as per DD?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-015"
+            }, 
+            {
+              "text": "The front cam lock panel installed?", 
+              "required": true, 
+              "severity": null, 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-016"
+            }, 
+            {
+              "text": "Additional Unistrut fitted correctly & earthed?", 
+              "required": true, 
+              "severity": null, 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-017"
+            }
+          ], 
+          "title": "Frame"
+        }, 
+        {
+          "group_id": "mgmt", 
+          "order": 30, 
+          "questions": [
+            {
+              "text": "Have cables been routed and managed neatly?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-018"
+            }, 
+            {
+              "text": "Cable ingress/egress point checked and correct?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-019"
+            }, 
+            {
+              "text": "CAT6A not routed against AC line?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-020"
+            }, 
+            {
+              "text": "Velcro used to secure fibres?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-021"
+            }, 
+            {
+              "text": "AC/DC cables ferrals fitted, no exposed copper wire?", 
+              "required": true, 
+              "severity": "critical", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-022"
+            }
+          ], 
+          "title": "Mgmt"
+        }, 
+        {
+          "group_id": "equipment", 
+          "order": 40, 
+          "questions": [
+            {
+              "text": "Zero U cable management bars for fibre cable management fitted & utilised?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-023"
+            }, 
+            {
+              "text": "GRU 05 05 GPS Receiver mounted with clamp as per DD?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-024"
+            }, 
+            {
+              "text": "CAT6A Patch Panel fitted & labelled correctly?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-025"
+            }, 
+            {
+              "text": "ERS 2260 fitted correctly & earthed back to the cabinet earth bar?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-026"
+            }, 
+            {
+              "text": "BBU 6631 (2G/4G) fitted correctly & earthed back to the cabinet earth bar?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-027"
+            }, 
+            {
+              "text": "Correct No' of DC splitters fitted as per DD?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-028"
+            }, 
+            {
+              "text": "BT MEAS fitted correcly & earthed back to cabinet earth bar?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-029"
+            }, 
+            {
+              "text": "Feeders touqued to the required spec - 5Nm", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-030"
+            }
+          ], 
+          "title": "Equipment"
+        }, 
+        {
+          "group_id": "power", 
+          "order": 50, 
+          "questions": [
+            {
+              "text": "Local AC DB providing the correct amp supply?", 
+              "required": true, 
+              "severity": "critical", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-031"
+            }, 
+            {
+              "text": "SWA cable routed and terminated correctly?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-032"
+            }, 
+            {
+              "text": "Commando socket fitted correctly if required?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-033"
+            }, 
+            {
+              "text": "AC Junction box fed correctly if required?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-034"
+            }, 
+            {
+              "text": "Smart meter fitted as per DD?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-035"
+            }, 
+            {
+              "text": "230V AC Power bar fitted correctly?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-036"
+            }, 
+            {
+              "text": "Eltek Flatpack fitted correctly & earthed back to cabinet earth bar?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-037"
+            }, 
+            {
+              "text": "Eltek fitted with correct rectifier count as per DD?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-038"
+            }, 
+            {
+              "text": "Eltek MCB amp value supporting BBU as per DD?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-039"
+            }
+          ], 
+          "title": "Power"
+        }
+      ], 
+      "bucket_id": "cabinet", 
+      "order": 20, 
+      "icon": "server", 
+      "title": "Cabinet"
+    }, 
+    {
+      "groups": [
+        {
+          "group_id": "gps", 
+          "order": 10, 
+          "questions": [
+            {
+              "text": "Has the correct GPS unit been installed as per DD?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-040"
+            }, 
+            {
+              "text": "GPS bracket installed as per TDEE?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-041"
+            }, 
+            {
+              "text": "GPS RF Weather Boot applied?", 
+              "required": true, 
+              "severity": null, 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-042"
+            }, 
+            {
+              "text": "GPS RF connector self amalgamated?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-043"
+            }, 
+            {
+              "text": "GPS earth routed neatly to nearest point?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-044"
+            }, 
+            {
+              "text": "GPS cable labelled 'EE GPS' with Brady type?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-045"
+            }
+          ], 
+          "title": "GPS"
+        }, 
+        {
+          "group_id": "mgmt", 
+          "order": 20, 
+          "questions": [
+            {
+              "text": "Cable clamps fitted, 1m spacings, yellow caps?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-046"
+            }, 
+            {
+              "text": "Additional cable tray earth bonded & routed back to roof LP system?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-047"
+            }, 
+            {
+              "text": "Cable ingress/egress roxtec point reinstated correctly?", 
+              "required": true, 
+              "severity": "critical", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-048"
+            }
+          ], 
+          "title": "Mgmt"
+        }
+      ], 
+      "bucket_id": "roof", 
+      "order": 30, 
+      "icon": "hard-hat", 
+      "title": "Roof"
+    }, 
+    {
+      "groups": [
+        {
+          "group_id": "labelling", 
+          "order": 10, 
+          "questions": [
+            {
+              "text": "BBU6631 > ERS 2260 Fibers labelled with P-Flags?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-049"
+            }, 
+            {
+              "text": "ERS2260 Coaxial 1/2\" labelled with Brady tip tag with correct tech colour > SPT1?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-050"
+            }, 
+            {
+              "text": "Wrap arounds seen as a minimum, no Dyno labels applied to any cable?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-051"
+            }, 
+            {
+              "text": "Cables passing through ingress/egress point labelled both sides, reinstated correctly?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-052"
+            }, 
+            {
+              "text": "Eltek power cables labelled to the correct BBU?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-053"
+            }, 
+            {
+              "text": "3 core flex cables labelled correctly?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-054"
+            }, 
+            {
+              "text": "Local DB amp labelled?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-055"
+            }, 
+            {
+              "text": "BT MEAS fibre labelled with P-Flags?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-056"
+            }, 
+            {
+              "text": "CAT6A from BBU to AP each labelled correctly?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-057"
+            }, 
+            {
+              "text": "CAT6A from patch panel labelled correctly?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-058"
+            }
+          ], 
+          "title": "Labelling"
+        }, 
+        {
+          "group_id": "other", 
+          "order": 20, 
+          "questions": [
+            {
+              "text": "All debris removed from rooftop?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-062"
+            }, 
+            {
+              "text": "All debris removed from MER?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-063"
+            }, 
+            {
+              "text": "All redundant kit removed from site?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-064"
+            }, 
+            {
+              "text": "All cable igress/egress points reinstated to conform to building fire regs?", 
+              "required": true, 
+              "severity": "critical", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-065"
+            }
+          ], 
+          "title": "Other"
+        }
+      ], 
+      "bucket_id": "site", 
+      "order": 40, 
+      "icon": "clipboard-check", 
+      "title": "Site"
+    }, 
+    {
+      "groups": [
+        {
+          "group_id": "mounting", 
+          "order": 10, 
+          "questions": [
+            {
+              "text": "AP mounted according to the DD?", 
+              "required": true, 
+              "severity": "major", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-059"
+            }, 
+            {
+              "text": "AP ID labelled with Dyno?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-060"
+            }, 
+            {
+              "text": "RF AP labelled at BBU/Splitter?", 
+              "required": true, 
+              "severity": "minor", 
+              "answer_type": "tri_state", 
+              "question_id": "Q-DAS-061"
+            }
+          ], 
+          "title": "Mounting"
+        }
+      ], 
+      "bucket_id": "access_points", 
+      "order": 50, 
+      "icon": "wifi", 
+      "title": "AP"
+    }
+  ], 
+  "schema_version": "bcqa.template.v1", 
+  "meta": {
+    "category": "IBS", 
+    "name": "CELs \u2014 DAS", 
+    "created_at": "2026-01-10", 
+    "solution": "DAS", 
+    "version": "1.0.0", 
+    "owner": "EE/BT", 
+    "template_id": "cel_das_v1", 
+    "description": "BCQA checklist for Ericsson IBS DAS deployments."
+  }, 
+  "ui": {
+    "default_bucket_icon": "clipboard-check", 
+    "bucket_ordering": "as_defined"
+  }, 
+  "declaration": {
+    "required": true, 
+    "signature_required": true, 
+    "statement": "I confirm this checklist is accurate."
+  }, 
+  "validation": {
+    "before_declare": [
+      {
+        "type": "required_questions_answered"
+      }, 
+      {
+        "type": "required_media_present"
+      }
+    ], 
+    "before_export": [
+      {
+        "type": "declaration_signed"
+      }
+    ]
+  }
+}
